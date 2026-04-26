@@ -1,0 +1,46 @@
+################## 前言设置 ##################
+cd /root/MiniOneRec
+conda activate MiniOneRec
+
+################## 直接可用运行方式（含可视化）##################
+# 1) SFT：训练 + 日志
+export WANDB_PROJECT=MiniOneRec
+export WANDB_MODE=offline
+set -o pipefail
+bash sft.sh | tee logs/sft_$(date +%F_%H-%M-%S).log
+
+# 2) RL：训练 + 日志
+export WANDB_PROJECT=MiniOneRec
+export WANDB_MODE=offline
+set -o pipefail
+bash rl.sh | tee logs/rl_$(date +%F_%H-%M-%S).log
+
+
+# 2.1) 训练指标可视化（loss / grad_norm / learning_rate）
+# 传训练输出目录或具体 trainer_state.json，默认输出到 training_analysis/
+conda run -n MiniOneRec python visualize_training_metrics.py --path output_dir/xxx
+
+
+
+# 3) Evaluate：会自动调用 visualize_metrics.py 生成图
+set -o pipefail
+# 可按显存调整（默认：batch=2, beams=20, max_new_tokens=128）
+# export EVAL_BATCH_SIZE=1
+# export EVAL_NUM_BEAMS=10
+# export EVAL_MAX_NEW_TOKENS=64
+bash evaluate.sh | tee logs/eval_$(date +%F_%H-%M-%S).log
+# 会实时打印 `Evaluation process started...`、`[Evaluate] ...` 和 `[Evaluate Progress] ...` 进度行
+
+
+################## 看可视化结果 ##################
+
+看可视化结果
+
+训练曲线（SFT/RL）：先同步离线 W&B 日志到线上（需先 wandb login）
+conda run -n MiniOneRec python -m wandb sync wandb/offline-run-*
+
+训练曲线（SFT/RL，本地直接看）：
+在训练目录下会生成 training_analysis/training_metrics.png（及 training_metrics.csv）。
+
+评估图（本地直接看）：
+在 results/<模型名>/analysis_Industrial_and_Scientific/figures/ 下，含 ranking/quality/distribution/diagnostics 全套图。
