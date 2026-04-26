@@ -4,7 +4,7 @@
 
 
 
-**🤖 面向生成式推荐规模化的开源框架: 本项目基于 Tiktok、Instagram、快手等 OneRec 的生成式内容推荐范式，将推荐统一建模为序列生成与偏好对齐，通过 Semantic-ID 实现多模态内容与用户行为的统一表示，结合 RL 驱动的 Reward 机制进行E2E优化**。**OMNI-Rec 是首个基于完全开源的OneRec**生成式推荐**框架，提供覆盖 **语义 ID（SID）构建**、**监督微调（SFT）** 以及面向推荐的**强化学习（RL）** 的端到端完整工作流。
+**OMNI-Rec 是首个基于完全开源的OneRec**生成式推荐**框架，提供覆盖 **语义 ID（SID）构建**、**监督微调（SFT）** 以及面向推荐的**强化学习（RL）** 的E2E完整工作流。
 
 ![Kuaishou Rec](https://img.shields.io/badge/Inspired-KuaishouRecSystem-orange)
 ![ByteDance](https://img.shields.io/badge/Inspired-ByteDance-blue)
