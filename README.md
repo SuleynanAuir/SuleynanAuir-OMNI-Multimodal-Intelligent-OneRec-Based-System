@@ -27,8 +27,8 @@
 
 | 阶段 | 全称 | 核心目标 | 学习内容 | 输入 | 输出 | 是否训练 |
 | -------- | ---------------------- | ------ | ----------------------- | -------------- | -------- | ---- |
-| SFT | Supervised Fine-Tuning | 拟合用户行为 | P(item | user, history) | 数据集（用户序列） | 初始化推荐模型（Root Model）🌟 | ✅ |
-| RL | Reinforcement Learning | 优化长期收益 | Policy π(a|s) | SFT模型 + reward | 优化后的策略模型 （RL-Enhanced Model）🌟 | ✅ |
+| SFT | Supervised Fine-Tuning | 拟合用户行为 | P(item｜user, history) | 数据集（用户序列） | 初始化推荐模型（Root Model）🌟 | ✅ |
+| RL | Reinforcement Learning | 优化长期收益 | Policy π(a｜s) | SFT模型 + reward | 优化后的策略模型 （RL-Enhanced Model）🌟 | ✅ |
 | Evaluate | Evaluation | 模型评估 | 无（推理） | 训练好的模型 | 指标 + 图表 | ❌ |
 
 - SFT：基础推荐 root model 仅模拟模仿历史数据（behavior cloning），不会考虑RL中的长期收益
