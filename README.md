@@ -3,8 +3,7 @@
 <img src="./assets/ChatGPT Image Apr 26, 2026, 11_57_26 PM_copy.png" width="500em" ></img> 
 
 
-
-**OMNI-Rec 是基于首个开源 OneRec**生成式推荐**框架，覆盖 **语义ID（SID）构建** + **监督微调（SFT）** + 面向推荐 **强化学习 (RL)** 的E2E工作流
+**OMNI-Rec 基于首个开源 OneRec**生成式推荐**框架，**SID** + **SFT** + 面向推荐 **Rec-RL** 的E2E工作流
 
 ![Kuaishou Rec](https://img.shields.io/badge/Inspired-KuaishouRecSystem-orange)
 ![ByteDance](https://img.shields.io/badge/Inspired-ByteDance-blue)
@@ -21,6 +20,22 @@
 
 </div>
 
+🌟 整体模型学习流程: SFT → RL → Eval 是递进关系，但不是“数据传递”，而是“模型能力逐步升级”
+
+基础编码方式进化：
+[![RQ-VAE + Balanced K-Means Operation](https://img.shields.io/badge/RQ--VAE-Documentation-blue)](./rq/README.md)
+
+| 阶段 | 全称 | 核心目标 | 学习内容 | 输入 | 输出 | 是否训练 |
+| -------- | ---------------------- | ------ | ----------------------- | -------------- | -------- | ---- |
+| SFT | Supervised Fine-Tuning | 拟合用户行为 | P(item | user, history) | 数据集（用户序列） | 初始化推荐模型（Root Model）🌟 | ✅ |
+| RL | Reinforcement Learning | 优化长期收益 | Policy π(a|s) | SFT模型 + reward | 优化后的策略模型 （RL-Enhanced Model）🌟 | ✅ |
+| Evaluate | Evaluation | 模型评估 | 无（推理） | 训练好的模型 | 指标 + 图表 | ❌ |
+
+- SFT：基础推荐 root model 仅模拟模仿历史数据（behavior cloning），不会考虑RL中的长期收益
+- RL: 学习“推荐策略（policy）”，最大化长期收益:
+	- 将 SFT训练好的 root Model + 模拟用户交互环境【真实数据：(user, history, recommended_item, clicked, dwell_time, ...) —— root model ——> 模型输出推荐列表 a_t】 + 设计好的reward（点击、停留、转发）
+	- 得到一个“更聪明”的推荐策略模型 （RL-Enhanced Model）
+- Eval: 评估行为阶段
 
 
 
