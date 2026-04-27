@@ -3,7 +3,7 @@
 <img src="./assets/ChatGPT Image Apr 26, 2026, 11_57_26 PM_copy.png" width="500em" ></img> 
 
 
-**OMNI-Rec 基于首个开源 OneRec**生成式推荐**框架，**SID** + **SFT** + 面向推荐 **Rec-RL** 的E2E工作流
+**OMNI-Rec 基于首个开源 OneRec生成式推荐框架，SID + SFT + 面向推荐 Rec-RL 的E2E工作流 💼**
 
 ![Kuaishou Rec](https://img.shields.io/badge/Inspired-KuaishouRecSystem-orange)
 ![ByteDance](https://img.shields.io/badge/Inspired-ByteDance-blue)
